@@ -1,0 +1,49 @@
+android {
+    defaultConfig {
+        //facebook
+        resValue('string', 'facebook_app_id', '1657002571118934')
+        resValue('string', 'fb_login_protocol_scheme', 'fb1657002571118934')
+        //google
+        resValue('string', 'google_client_id', '218439857589-3qnnssokj3c2767i1ujmd3mhonasg7kc.apps.googleusercontent.com')
+        //snapchat配置 redirect_url="gameplus://gghj/gggg"
+        //snapchat client_id
+        resValue('string', 'snapchat_client_id', '9253d907-2fd9-46c0-a1d8-e4eae0718a7c')
+        addManifestPlaceholders([snapchat_scheme: "gameplus", snapchat_host: "gghj", snapchat_path: "gggg"])
+        //line
+        resValue('string', 'line_channel_id', '1655569055')
+        //kakao
+        resValue('string', 'kakao_app_id', 'a83d6ce0334d9539a9a9906332741347')
+        resValue('string', 'kakao_scheme', 'kakaoa83d6ce0334d9539a9a9906332741347')
+        //naver
+        resValue('string', 'naver_client_id', 'v1MBUGfEzVLtPBuSds5I')
+        resValue('string', 'naver_client_secret', 'UJFX6gDopG')
+        resValue('string', 'naver_client_name', 'PowerRaid')
+        //twitter
+        resValue('string', 'twitter_consumer_key', 'viOnkeLpHBKs6KXV7MPpeGyzE')
+        resValue('string', 'twitter_consumer_secret_key', 'NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey')
+        resValue('string', 'twitter_redirect_url', 'http://mob.com')
+        //方法数超64k
+        multiDexEnabled true
+    }
+    //Line kakao sdk 配置,java8支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def groupId = "com.sino.topsdk"
+    def version = "1.4.0.1"
+    implementation "$groupId:ui:$version"
+    implementation "$groupId:guest:$version"
+    implementation "$groupId:facebook:$version"
+    implementation "$groupId:google:$version"
+    implementation "$groupId:snapchat:$version"
+    implementation "$groupId:line:$version"
+    implementation "$groupId:kakao-v1:$version"
+    implementation "$groupId:naver:$version"
+    implementation "$groupId:twitter:$version"
+    implementation "$groupId:billing:$version"
+    //implementation "$groupId:onestore:version"
+}

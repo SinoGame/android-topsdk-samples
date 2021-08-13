@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+}
+apply from: "config.gradle"
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.sino.PowerRaid"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 11401
+        versionName "0.0.14"
+    }
+    signingConfigs {
+        debug {
+            storeFile file('../debugkey.jks')
+            keyAlias = 'PowerRaid'
+            storePassword 'PowerRaid'
+            keyPassword 'PowerRaid'
+        }
+        release {
+            storeFile file('../debugkey.jks')
+            keyAlias = 'PowerRaid'
+            storePassword 'PowerRaid'
+            keyPassword 'PowerRaid'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false//混淆
+            zipAlignEnabled false  //压缩优化
+            shrinkResources false  //移出无用资源
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true   //开启混淆
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true  //移出无用资源
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+}
