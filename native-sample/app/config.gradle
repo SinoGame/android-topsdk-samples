@@ -34,16 +34,27 @@ android {
 
 dependencies {
     def groupId = "com.sino.topsdk"
-    def version = "1.4.0.1"
-    implementation "$groupId:ui:$version"
-    implementation "$groupId:guest:$version"
-    implementation "$groupId:facebook:$version"
-    implementation "$groupId:google:$version"
-    implementation "$groupId:snapchat:$version"
-    implementation "$groupId:line:$version"
-    implementation "$groupId:kakao-v1:$version"
-    implementation "$groupId:naver:$version"
-    implementation "$groupId:twitter:$version"
-    implementation "$groupId:billing:$version"
+    //sdk版本号
+    def ver = "1.4.0.2"
+    //AndroidStudio 主依赖
+    implementation "$groupId:ui:$ver"
+    //snapchat 授权登录依赖
+    implementation "$groupId:snapchat:$ver"
+    //kakao 授权登录依赖
+    implementation "$groupId:kakao-v1:$ver"
+    //twitter 授权登录依赖
+    implementation "$groupId:twitter:$ver"
+    //line 授权登录依赖
+    implementation "$groupId:line:$ver"
+    //google billing 支付依赖
+    implementation "$groupId:onestore:$ver"
+    //facebook 授权登录依赖
+    implementation "$groupId:facebook:$ver"
+    //guest 授权登录依赖
+    implementation "$groupId:guest:$ver"
+    //google 授权登录依赖
+    implementation "$groupId:google:$ver"
+    //naver 授权登录依赖
+    implementation "$groupId:naver:$ver"
     //implementation "$groupId:onestore:version"
 }

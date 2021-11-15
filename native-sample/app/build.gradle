@@ -10,8 +10,8 @@ android {
         applicationId "com.sino.PowerRaid"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 11401
-        versionName "0.0.14"
+        versionCode 11402
+        versionName "0.0.15"
     }
     signingConfigs {
         debug {

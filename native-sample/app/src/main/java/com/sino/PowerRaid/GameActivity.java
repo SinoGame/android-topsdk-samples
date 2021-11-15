@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Process;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
@@ -174,6 +175,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
             gameSDKManager.onDestroy(this);
         }
         super.onDestroy();
+        Process.killProcess(Process.myPid());
     }
 
     @Override
