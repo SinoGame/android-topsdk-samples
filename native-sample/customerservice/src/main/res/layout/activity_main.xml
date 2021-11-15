@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="客服演示DEMO"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_app_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/top_cs_dp_30"
+                android:layout_marginTop="@dimen/top_cs_dp_30"
+                android:layout_marginEnd="@dimen/top_cs_dp_30"
+                android:hint="请输入appId" />
+
+            <EditText
+                android:id="@+id/et_role_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/top_cs_dp_30"
+                android:layout_marginTop="@dimen/top_cs_dp_20"
+                android:layout_marginEnd="@dimen/top_cs_dp_30"
+                android:hint="请输入roleId" />
+
+            <EditText
+                android:id="@+id/et_role_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/top_cs_dp_30"
+                android:layout_marginTop="@dimen/top_cs_dp_20"
+                android:layout_marginEnd="@dimen/top_cs_dp_30"
+                android:hint="请输入roleName" />
+
+            <EditText
+                android:id="@+id/et_extra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/top_cs_dp_30"
+                android:layout_marginTop="@dimen/top_cs_dp_20"
+                android:layout_marginEnd="@dimen/top_cs_dp_30"
+                android:hint="请输入extraJson" />
+
+            <Button
+                android:id="@+id/btn_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="打开客服"
+                android:textColor="#cc0000"
+                android:textSize="22sp" />
+
+            <Button
+                android:id="@+id/btn_cv_null_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="打开客服2"
+                android:textColor="#cc0000"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
