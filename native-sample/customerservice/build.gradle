@@ -37,8 +37,9 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+//    def groupId = "com.sino.topsdk.dev"
     def groupId = "com.sino.topsdk"
     //sdk版本号
-    def ver = "1.2.2"
+    def ver = "1.2.4"
     implementation "$groupId:customerservice:$ver"
 }

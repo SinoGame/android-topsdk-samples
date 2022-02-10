@@ -33,9 +33,10 @@ android {
 }
 
 dependencies {
+//    def groupId = "com.sino.topsdk.dev"
     def groupId = "com.sino.topsdk"
     //sdk版本号
-    def ver = "1.4.0.2"
+    def ver = "1.4.3.1"
     //AndroidStudio 主依赖
     implementation "$groupId:ui:$ver"
     //snapchat 授权登录依赖
@@ -47,7 +48,7 @@ dependencies {
     //line 授权登录依赖
     implementation "$groupId:line:$ver"
     //google billing 支付依赖
-    implementation "$groupId:onestore:$ver"
+    implementation "$groupId:billing:$ver"
     //facebook 授权登录依赖
     implementation "$groupId:facebook:$ver"
     //guest 授权登录依赖
