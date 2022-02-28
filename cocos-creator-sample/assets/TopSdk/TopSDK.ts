@@ -228,7 +228,7 @@ export class TopSDK {
             if (sys.OS_IOS == sys.os) {
                 jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "signupEventWithMethod:", method);
             } else if (sys.OS_ANDROID == sys.os) {
-                 return jsb.reflection.callStaticMethod(this.androidClass, "signupEvent", "(Ljava/lang/String;)V", method);
+                return jsb.reflection.callStaticMethod(this.androidClass, "signupEvent", "(Ljava/lang/String;)V", method);
             }
         }
     }
@@ -241,7 +241,7 @@ export class TopSDK {
             if (sys.OS_IOS == sys.os) {
                 jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "purchaseEventWithParams:", purchase.toJsonStr());
             } else if (sys.OS_ANDROID == sys.os) {
-                 return jsb.reflection.callStaticMethod(this.androidClass, "purchaseEvent", "(Ljava/lang/String;)V", purchase.toJsonStr());
+                return jsb.reflection.callStaticMethod(this.androidClass, "purchaseEvent", "(Ljava/lang/String;)V", purchase.toJsonStr());
             }
         }
     }
@@ -297,7 +297,7 @@ export class TopSDK {
             if (sys.OS_IOS == sys.os) {
                 jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "shareEventWithMethod:contentType:contentId:", method, contentType, contentId);
             } else if (sys.OS_ANDROID == sys.os) {
-                return jsb.reflection.callStaticMethod(this.androidClass, "shareEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",  method, contentType, contentId);
+                return jsb.reflection.callStaticMethod(this.androidClass, "shareEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", method, contentType, contentId);
             }
         }
     }
@@ -315,7 +315,7 @@ export class TopSDK {
         }
     }
 
-    static spendVirtualCurrencyEvent(name: string, count: number,goodsName: string) {
+    static spendVirtualCurrencyEvent(name: string, count: number, goodsName: string) {
         if (!name || !goodsName) {
             return;
         }
@@ -336,7 +336,7 @@ export class TopSDK {
             if (sys.OS_IOS == sys.os) {
                 jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "levelStartEventWithLevelName:", levelName);
             } else if (sys.OS_ANDROID == sys.os) {
-                return jsb.reflection.callStaticMethod(this.androidClass, "levelStartEvent", "(Ljava/lang/String;)V",levelName);
+                return jsb.reflection.callStaticMethod(this.androidClass, "levelStartEvent", "(Ljava/lang/String;)V", levelName);
             }
         }
     }
@@ -360,15 +360,24 @@ export class TopSDK {
         }
         var paramsJsonStr = ""
         if (params) {
-            paramsJsonStr = JSON.stringify(params)
+            paramsJsonStr = JSON.stringify(Array.from(params.entries()))
         }
-        
-
+        console.log("reportEvent=="+paramsJsonStr);
         if (sys.isNative) {
             if (sys.OS_IOS == sys.os) {
                 jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "reportEvent:params:channelType:", eventName, paramsJsonStr, channelType);
             } else if (sys.OS_ANDROID == sys.os) {
-                return jsb.reflection.callStaticMethod(this.androidClass, "reportEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", eventName, paramsJsonStr, channelType);
+                var channelString = "All"
+                if (channelType == TOPDataChannelType.ALL) {
+                    channelString = "All"
+                } else if (channelType == TOPDataChannelType.APPSFLYER) {
+                    channelString = "Appsflyer"
+                } else if (channelType == TOPDataChannelType.FIREBASE) {
+                    channelString = "Firebase"
+                } else if (channelType == TOPDataChannelType.ADJUST) {
+                    channelString = "Adjust"
+                }
+                return jsb.reflection.callStaticMethod(this.androidClass, "report", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", eventName, paramsJsonStr, channelString);
             }
         }
     }

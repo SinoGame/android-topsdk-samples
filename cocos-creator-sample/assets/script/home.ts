@@ -1,6 +1,6 @@
 
 import { Component, Label, RichText, sys, _decorator } from 'cc';
-import { TOPPayment, TOPPlatformType, TOPRoleInfo, TopSDK, TopSDKEmitter } from '../TopSdk/TopSDK';
+import { TOPDataChannelType, TOPPayment, TOPPlatformType, TOPRoleInfo, TopSDK, TopSDKEmitter } from '../TopSdk/TopSDK';
 const { ccclass, property } = _decorator;
 
 
@@ -159,6 +159,11 @@ export class Home extends Component {
             buyBtn.on("click", this.buy);
         }
 
+        var levelUpBtn = this.node.getChildByName("levelUpBtn");
+        if (levelUpBtn) {
+            levelUpBtn.on("click", this.reportLevelUpHandler);
+        }
+
         var logLabel = this.node.getChildByName("logLabel");
         if (logLabel) {
             if (logLabel.getComponent(Label)) {
@@ -199,6 +204,12 @@ export class Home extends Component {
     userCenterHanlder() {
         console.log("点击用户中心");
         TopSDK.enterUserCenter();
+        TopSDK.reportEvent("Test3",new Map<string,string>(),TOPDataChannelType.ALL)
+        var  map= new Map<string,string>()
+        map.set("eew","eee")
+        map.set("eew1","eee1")
+        map.set("eew1","eee1")
+        TopSDK.reportEvent("Test4",map,TOPDataChannelType.ALL)
     }
 
     logoutHandler() {
@@ -219,6 +230,10 @@ export class Home extends Component {
     getBindInfoHandler() {
         console.log("点击获取用户绑定信息");
         TopSDK.getUserBindInfo();
+    }
+
+    reportLevelUpHandler() {
+        TopSDK.levelUpEvent(100,"小黑");
     }
 
     buy() {
