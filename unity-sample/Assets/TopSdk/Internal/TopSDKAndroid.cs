@@ -135,7 +135,6 @@ public class TopSDKAndroid : TopSDKBase
     public static void PurchaseEvent(TOPPurchaseData data)
     {
         PluginClass.CallStatic("purchaseEvent", JsonUtility.ToJson(data));
-        Debug.Log("PurchaseEvent: " + JsonUtility.ToJson(data));
     }
 
     public static void TutorialBeginEvent()
@@ -208,7 +207,6 @@ public class TopSDKAndroid : TopSDKBase
             eventParams = TopSDKJsonHelper.DictionaryToJson(eventValues);
         }
         PluginClass.CallStatic("report", eventName, eventParams, channelStr);
-        Debug.Log("ReportEvent: " + eventParams + "-----channelType : " + channelStr);
     }
 
     public static void Release()

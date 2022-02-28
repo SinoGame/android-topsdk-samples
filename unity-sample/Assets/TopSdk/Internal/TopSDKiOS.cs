@@ -2,8 +2,8 @@
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using TopSDKDataModel;
-
-
+using System.Collections.Generic;
+using TopSDKJsonUtils;
 
 [SuppressMessage("ReSharper", "UnusedMember.Global")]
 public class TopSDKiOS : TopSDKBase
@@ -36,6 +36,45 @@ public class TopSDKiOS : TopSDKBase
 
     [DllImport ("__Internal")]
 	private static extern void _bindPlatform(string platform);
+    
+    [DllImport ("__Internal")]
+    private static extern void _loginEvent(string method);
+    
+    [DllImport ("__Internal")]
+    private static extern void _signupEvent(string method);
+    
+    [DllImport ("__Internal")]
+    private static extern void _purchaseEvent(string purchaseDataJson);
+    
+    [DllImport ("__Internal")]
+    private static extern void _tutorialBeginEvent();
+    
+    [DllImport ("__Internal")]
+    private static extern void _tutorialCompleteEvent();
+    
+    [DllImport ("__Internal")]
+    private static extern void _levelUpEvent(int level, string roleName);
+    
+    [DllImport ("__Internal")]
+    private static extern void _unlockAchievementEvent(string achievementId);
+    
+    [DllImport ("__Internal")]
+    private static extern void _shareEvent(string method, string contentType, string contentId);
+    
+    [DllImport ("__Internal")]
+    private static extern void _earnVirtualCurrencyEvent(string name, int count);
+    
+    [DllImport ("__Internal")]
+    private static extern void _spendVirtualCurrencyEvent(string name, int count, string goodsName);
+    
+    [DllImport ("__Internal")]
+    private static extern void _levelStartEvent(string levelName);
+    
+    [DllImport ("__Internal")]
+    private static extern void _levelEndEvent(string levelName, bool success);
+    
+    [DllImport ("__Internal")]
+    private static extern void _report(string eventName, string eventValuesJson, string channelType);
 #else
     // 访问本地插件接口的声明
     private static void _init(string appId) { }
@@ -55,6 +94,31 @@ public class TopSDKiOS : TopSDKBase
     private static void _pay(string paymentJson, string roleInfoJson) { }
 
     private static void _bindPlatform(string platform) { }
+
+    private static void _loginEvent(string method) { }
+
+    private static void _signupEvent(string method) { }
+
+    private static void _purchaseEvent(string purchaseDataJson) { }
+
+    private static void _tutorialBeginEvent() { }
+
+    private static void _tutorialCompleteEvent() { }
+
+    private static void _levelUpEvent(int level, string roleName) { }
+
+    private static void _unlockAchievementEvent(string achievementId) { }
+
+    private static void _shareEvent(string method, string contentType, string contentId) { }
+
+    private static void _earnVirtualCurrencyEvent(string name, int count) { }
+
+    private static void _spendVirtualCurrencyEvent(string name, int count, string goodsName) { }
+    private static void _levelStartEvent(string levelName) { }
+
+    private static void _levelEndEvent(string levelName, bool success) { }
+
+    private static void _report(string eventName, string eventValuesJson, string channelType) { }
 #endif
 
     static TopSDKiOS()
@@ -162,7 +226,117 @@ public class TopSDKiOS : TopSDKBase
 		_pay(JsonUtility.ToJson(productInfo), JsonUtility.ToJson(roleInfo));
 #endif
     }
+    public static void LoginEvent(string method)
+    {
+#if !UNITY_EDITOR
+         _loginEvent(method);
+#endif
+    }
 
+    public static void SignupEvent(string method)
+    {
+#if !UNITY_EDITOR
+         _signupEvent(method);
+#endif
+    }
+
+    public static void PurchaseEvent(TOPPurchaseData data)
+    {
+#if !UNITY_EDITOR
+         _purchaseEvent(JsonUtility.ToJson(data));
+#endif
+    }
+
+    public static void TutorialBeginEvent()
+    {
+#if !UNITY_EDITOR
+         _tutorialBeginEvent();
+#endif
+    }
+
+    public static void TutorialCompleteEvent()
+    {
+#if !UNITY_EDITOR
+         _tutorialCompleteEvent();
+#endif
+    }
+
+    public static void LevelUpEvent(int level, string roleName)
+    {
+#if !UNITY_EDITOR
+         _levelUpEvent(level,roleName);
+#endif
+    }
+
+    public static void UnlockAchievementEvent(string achievementId)
+    {
+#if !UNITY_EDITOR
+         _unlockAchievementEvent(achievementId);
+#endif
+    }
+
+    public static void ShareEvent(string method, string contentType, string contentId)
+    {
+#if !UNITY_EDITOR
+         _shareEvent(method,contentType,contentId);
+#endif
+    }
+
+    public static void EarnVirtualCurrencyEvent(string name, int count)
+    {
+#if !UNITY_EDITOR
+         _earnVirtualCurrencyEvent(name,count);
+#endif
+    }
+
+    public static void SpendVirtualCurrencyEvent(string name, int count, string goodsName)
+    {
+#if !UNITY_EDITOR
+         _spendVirtualCurrencyEvent(name,count,goodsName);
+#endif
+    }
+
+    public static void LevelStartEvent(string levelName)
+    {
+#if !UNITY_EDITOR
+         _levelStartEvent(levelName);
+#endif
+    }
+
+    public static void LevelEndEvent(string levelName, bool success)
+    {
+#if !UNITY_EDITOR
+         _levelEndEvent(levelName,success);
+#endif
+    }
+
+    public static void Report(string eventName, Dictionary<string, string> eventValues, TOPDataChannelType channelType)
+    {
+        string channelStr = "";
+        switch (channelType)
+        {
+            case TOPDataChannelType.All:
+                channelStr = "All";
+                break;
+            case TOPDataChannelType.Appsflyer:
+                channelStr = "Appsflyer";
+                break;
+            case TOPDataChannelType.Firebase:
+                channelStr = "Firebase";
+                break;
+            case TOPDataChannelType.Adjust:
+                channelStr = "Adjust";
+                break;
+        }
+        string eventParams = null;
+        if (eventValues != null)
+        {
+            eventParams = TopSDKJsonHelper.DictionaryToJson(eventValues);
+        }
+#if !UNITY_EDITOR
+         _report(eventName,eventParams,channelStr);
+#endif
+    }
     public static void Release()
     {
 
