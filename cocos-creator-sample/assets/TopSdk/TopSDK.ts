@@ -11,6 +11,13 @@ export enum TOPPlatformType {
     TWITTER = "TWITTER"
 }
 
+export enum TOPDataChannelType {
+    ALL = 0,
+    APPSFLYER = 1,
+    FIREBASE = 2,
+    ADJUST = 3
+}
+
 export class TOPPayment {
     productId: string;//必传
     amount: number;
@@ -55,6 +62,37 @@ export class TOPRoleInfo {
             "roleLevel": this.roleLevel ? this.roleLevel : "",
             "serverName": this.serverName ? this.serverName : "",
             "vipLevel": this.vipLevel ? this.vipLevel : ""
+        };
+
+        return JSON.stringify(jsonObj);
+    }
+}
+
+export class TOPPurchaseData {
+    currency: string;
+    revenue: number;
+    quantity: number;
+    productId: string;
+    orderId: string;
+    receiptId: string;
+
+    constructor(revenue: number, currency: string, quantity: number, productId: string, orderId: string, receiptId: string) {
+        this.revenue = revenue;
+        this.currency = currency;
+        this.quantity = quantity;
+        this.productId = productId;
+        this.orderId = orderId;
+        this.receiptId = receiptId;
+    }
+
+    toJsonStr() {
+        let jsonObj = {
+            "revenue": this.revenue,
+            "currency": this.currency ? this.currency : "",
+            "quantity": this.quantity,
+            "productId": this.productId ? this.productId : "",
+            "orderId": this.orderId ? this.orderId : "",
+            "receiptId": this.receiptId ? this.receiptId : ""
         };
 
         return JSON.stringify(jsonObj);
@@ -157,6 +195,180 @@ export class TopSDK {
                 jsb.reflection.callStaticMethod("TOPSDKCocosPlugin", "payWithPayment:roleInfo:", payment.toJsonStr(), roleInfo.toJsonStr());
             } else if (sys.OS_ANDROID == sys.os) {
                 return jsb.reflection.callStaticMethod(this.androidClass, "pay", "(Ljava/lang/String;Ljava/lang/String;)V", payment.toJsonStr(), roleInfo.toJsonStr());
+            }
+        }
+    }
+
+    static disableCollectIDFA(isDisable: boolean) {
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "disableCollectIDFA:", isDisable);
+            }
+        }
+    }
+
+    static loginEvent(method: string) {
+        if (!method) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "loginEventWithMethod:", method);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "loginEvent", "(Ljava/lang/String;)V", method);
+            }
+        }
+    }
+
+    static signupEvent(method: string) {
+        if (!method) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "signupEventWithMethod:", method);
+            } else if (sys.OS_ANDROID == sys.os) {
+                 return jsb.reflection.callStaticMethod(this.androidClass, "signupEvent", "(Ljava/lang/String;)V", method);
+            }
+        }
+    }
+
+    static purchaseEvent(purchase: TOPPurchaseData) {
+        if (!purchase) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "purchaseEventWithParams:", purchase.toJsonStr());
+            } else if (sys.OS_ANDROID == sys.os) {
+                 return jsb.reflection.callStaticMethod(this.androidClass, "purchaseEvent", "(Ljava/lang/String;)V", purchase.toJsonStr());
+            }
+        }
+    }
+
+    static tutorialBeginEvent() {
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "tutorialBeginEvent");
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "tutorialBeginEvent", "()V");
+            }
+        }
+    }
+
+    static tutorialCompleteEvent() {
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "tutorialCompleteEvent");
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "tutorialCompleteEvent", "()V");
+            }
+        }
+    }
+
+    static levelUpEvent(level: number, roleName: string) {
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "levelUpEventWithLevel:roleName:", level, roleName ? roleName : "");
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "levelUpEvent", "(ILjava/lang/String;)V", level, roleName ? roleName : "");
+            }
+        }
+    }
+
+    static unlockAchievementEvent(achievementId: string) {
+        if (!achievementId) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "unlockAchievementEventWithAchievementId:", achievementId);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "unlockAchievementEvent", "(Ljava/lang/String;)V", achievementId);
+            }
+        }
+    }
+
+    static shareEvent(method: string, contentType: string, contentId: string) {
+        if (!method || !contentType || !contentId) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "shareEventWithMethod:contentType:contentId:", method, contentType, contentId);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "shareEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",  method, contentType, contentId);
+            }
+        }
+    }
+
+    static earnVirtualCurrencyEvent(name: string, count: number) {
+        if (!name) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "earnVirtualCurrencyEventWithName:count:", name, count);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "earnVirtualCurrencyEvent", "(Ljava/lang/String;I)V", name, count);
+            }
+        }
+    }
+
+    static spendVirtualCurrencyEvent(name: string, count: number,goodsName: string) {
+        if (!name || !goodsName) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "earnVirtualCurrencyEventWithName:count:goodsName:", name, count, goodsName);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "spendVirtualCurrencyEvent", "(Ljava/lang/String;ILjava/lang/String;)V", name, count, goodsName);
+            }
+        }
+    }
+
+    static levelStartEvent(levelName: string) {
+        if (!levelName) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "levelStartEventWithLevelName:", levelName);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "levelStartEvent", "(Ljava/lang/String;)V",levelName);
+            }
+        }
+    }
+
+    static levelEndEventWithLevelName(levelName: string, success: boolean) {
+        if (!levelName) {
+            return;
+        }
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "levelEndEventWithLevelName:success:", levelName, success);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "levelEndEvent", "(Ljava/lang/String;Z)V", levelName, success);
+            }
+        }
+    }
+
+    static reportEvent(eventName: string, params: Map<string, string>, channelType: TOPDataChannelType) {
+        if (!eventName) {
+            return;
+        }
+        var paramsJsonStr = ""
+        if (params) {
+            paramsJsonStr = JSON.stringify(params)
+        }
+        
+
+        if (sys.isNative) {
+            if (sys.OS_IOS == sys.os) {
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "reportEvent:params:channelType:", eventName, paramsJsonStr, channelType);
+            } else if (sys.OS_ANDROID == sys.os) {
+                return jsb.reflection.callStaticMethod(this.androidClass, "reportEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", eventName, paramsJsonStr, channelType);
             }
         }
     }
