@@ -98,4 +98,32 @@ namespace TopSDKDataModel
             this.vipLevel = vipLevel;
         }
     }
+    //
+    [Serializable]
+    public class TOPPurchaseData
+    {
+        public double revenue;
+        public string currency;
+        public int quantity;
+        public string productId;
+        public string orderId;
+        public string receiptId;
+
+        public TOPPurchaseData(double revenue, string currency, int quantity, string productId, string orderId, string receiptId)
+        {
+            this.revenue = revenue;
+            this.currency = currency;
+            this.quantity = quantity;
+            this.productId = productId;
+            this.orderId = orderId;
+            this.receiptId = receiptId;
+        }
+    }
+    public enum TOPDataChannelType
+    {
+        All,
+        Appsflyer,
+        Firebase,
+        Adjust
+    };
 }

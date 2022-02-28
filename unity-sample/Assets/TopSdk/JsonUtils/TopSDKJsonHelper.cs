@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TopSDKJsonUtils
 {
@@ -34,6 +35,12 @@ namespace TopSDKJsonUtils
         private class Wrapper<T>
         {
             public List<T> Items;
+        }
+        public static string DictionaryToJson(Dictionary<string, string> dict)
+        {
+            var entries = dict.Select(d =>
+                string.Format("\"{0}\": \"{1}\"", d.Key, d.Value));
+            return "{" + string.Join(",", entries) + "}";
         }
     }
 }

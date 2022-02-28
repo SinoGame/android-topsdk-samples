@@ -1,0 +1,9 @@
+<resources>
+    <string name="default_web_client_id" translatable="false">919745385532-j3s5qolfbo4lsu84dth6aksgc5kvitf9.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">919745385532</string>
+    <string name="google_api_key" translatable="false">AIzaSyDi5CExb1wlEcK04herasMaP6UZcsufozA</string>
+    <string name="google_app_id" translatable="false">1:919745385532:android:6a68097f242cbf9344df39</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDi5CExb1wlEcK04herasMaP6UZcsufozA</string>
+    <string name="google_storage_bucket" translatable="false">powerraid-1f6f1.appspot.com</string>
+    <string name="project_id" translatable="false">powerraid-1f6f1</string>
+</resources>

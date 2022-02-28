@@ -64,11 +64,19 @@ public class MainScript : MonoBehaviour
     public void LoginClick()
     {
         TopSDK.Login();
+        Dictionary<string, string> testl = new Dictionary<string, string>();
+        testl.Add("jdjj", "iiii");
+        testl.Add("dewd", "0.125");
+        testl.Add("sded", "17.259");
+        testl.Add("dasd", "true");
+        testl.Add("hdhd", "f");
+        TopSDK.Report("Test1", testl, TOPDataChannelType.All);
     }
     public void UserCenterClick()
     {
 
         TopSDK.EnterUserCenter();
+        TopSDK.Report("Test2", null, TOPDataChannelType.All);
     }
 
     public void InappClick()
@@ -179,6 +187,7 @@ public class MainScript : MonoBehaviour
     private void OnPaySuccessEvent(TOPPaymentData payResult)
     {
         Debug.Log("OnPaySuccessEvent: " + payResult.orderNo + "-----" + payResult.payPlatformOrderNo);
+        TopSDK.PurchaseEvent(new TOPPurchaseData(0.1254, "USD", 1, payResult.productId, payResult.orderNo, payResult.payPlatformOrderNo));
         ShowDialog("支付成功", "商品ID：" + payResult.productId + "\nSDK订单号：" + payResult.orderNo + "\n三方订单号：" + payResult.payPlatformOrderNo);
     }
 
