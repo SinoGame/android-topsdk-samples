@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using TopSDKDataModel;
 using System.Collections.Generic;
@@ -74,7 +75,7 @@ public class TopSDKiOS : TopSDKBase
     private static extern void _levelEndEvent(string levelName, bool success);
     
     [DllImport ("__Internal")]
-    private static extern void _report(string eventName, string eventValuesJson, string channelType);
+    private static extern void _report(string eventName, string eventValuesJson, int channelType);
 #else
     // 访问本地插件接口的声明
     private static void _init(string appId) { }
@@ -118,7 +119,7 @@ public class TopSDKiOS : TopSDKBase
 
     private static void _levelEndEvent(string levelName, bool success) { }
 
-    private static void _report(string eventName, string eventValuesJson, string channelType) { }
+    private static void _report(string eventName, string eventValuesJson, int channelType) { }
 #endif
 
     static TopSDKiOS()
@@ -312,20 +313,20 @@ public class TopSDKiOS : TopSDKBase
 
     public static void Report(string eventName, Dictionary<string, string> eventValues, TOPDataChannelType channelType)
     {
-        string channelStr = "";
+        int channel = 0;
         switch (channelType)
         {
             case TOPDataChannelType.All:
-                channelStr = "All";
+                channel = 0;
                 break;
             case TOPDataChannelType.Appsflyer:
-                channelStr = "Appsflyer";
+                channel = 1;
                 break;
             case TOPDataChannelType.Firebase:
-                channelStr = "Firebase";
+                channel = 2;
                 break;
             case TOPDataChannelType.Adjust:
-                channelStr = "Adjust";
+                channel = 3;
                 break;
         }
         string eventParams = null;
@@ -334,7 +335,7 @@ public class TopSDKiOS : TopSDKBase
             eventParams = TopSDKJsonHelper.DictionaryToJson(eventValues);
         }
 #if !UNITY_EDITOR
-         _report(eventName,eventParams,channelStr);
+         _report(eventName,eventParams,channel);
 #endif
     }
     public static void Release()
