@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainScript : MonoBehaviour
 {
-    public Button loginButton, userCenterButton, inappButton, bindGoogleButton, bindFacebookButton, logoutButton;
+    public Button loginButton, userCenterButton, inappButton, bindGoogleButton, bindFacebookButton, logoutButton, eventButton;
     public Text version, loginStatus, title, message;
     public GameObject dialog;
 
@@ -52,6 +52,7 @@ public class MainScript : MonoBehaviour
         bindGoogleButton.onClick.AddListener(BindGoogleClick);
         bindFacebookButton.onClick.AddListener(BindFacebookClick);
         logoutButton.onClick.AddListener(LogoutClick);
+        eventButton.onClick.AddListener(EventClick);
         version.text = string.Format("SDK v{0} 演示DEMO", TopSDK.SdkName);
     }
 
@@ -60,10 +61,19 @@ public class MainScript : MonoBehaviour
     {
 
     }
-
-    public void LoginClick()
+    public void EventClick()
     {
-        TopSDK.Login();
+        TOPPurchaseData pu = new TOPPurchaseData(0.125, "USD", 1, "item_01", "15435678565656896", "45444656562331878416");
+        TopSDK.PurchaseEvent(pu);
+        TopSDK.TutorialBeginEvent();
+        TopSDK.TutorialCompleteEvent();
+        TopSDK.LevelUpEvent(100, "黄桢浩专属");
+        TopSDK.UnlockAchievementEvent("dhud1514654");
+        TopSDK.ShareEvent("Facebook", "Image", "155215668");
+        TopSDK.EarnVirtualCurrencyEvent("黄金", 154844);
+        TopSDK.SpendVirtualCurrencyEvent("钻石", 1545545, "黄桢浩");
+        TopSDK.LevelStartEvent("关卡一");
+        TopSDK.LevelEndEvent("关卡二", true);
         Dictionary<string, string> testl = new Dictionary<string, string>();
         testl.Add("jdjj", "iiii");
         testl.Add("dewd", "0.125");
@@ -71,12 +81,15 @@ public class MainScript : MonoBehaviour
         testl.Add("dasd", "true");
         testl.Add("hdhd", "f");
         TopSDK.Report("Test1", testl, TOPDataChannelType.All);
+        TopSDK.Report("Test2", null, TOPDataChannelType.All);
+    }
+    public void LoginClick()
+    {
+        TopSDK.Login();
     }
     public void UserCenterClick()
     {
-
         TopSDK.EnterUserCenter();
-        TopSDK.Report("Test2", null, TOPDataChannelType.All);
     }
 
     public void InappClick()
@@ -119,14 +132,12 @@ public class MainScript : MonoBehaviour
     private void OnLoginSuccessEvent(TOPUserInfo accountInfo)
     {
         Debug.Log("OnLoginSuccessEvent: " + accountInfo.id + "-----" + accountInfo.token);
-
         loginStatus.text = "登录状态：已登录";
         ShowDialog("登录成功", "用户名：" + accountInfo.name + "\n用户id：" + accountInfo.id);
     }
     private void OnLoginFailedEvent(TOPErrorResults error)
     {
         Debug.Log("OnLoginFailedEvent: " + error.code + "-----" + error.message);
-
         loginStatus.text = "登录状态：登录失败";
         ShowDialog("登录失败", "code：" + error.code + "\nmessage：" + error.message);
     }
@@ -134,7 +145,6 @@ public class MainScript : MonoBehaviour
     private void OnLogoutSuccessEvent()
     {
         Debug.Log("OnLogoutSuccessEvent");
-
         loginStatus.text = "登录状态：未登录";
         ShowDialog("退出登录", "退出登录成功");
     }
@@ -154,7 +164,6 @@ public class MainScript : MonoBehaviour
     {
         Debug.Log("OnBindFailedEvent: " + error.code + "-----" + error.message);
         ShowDialog("绑定失败", "绑定类型：" + error.platform + "\ncode：" + error.code + "\nmessage：" + error.message);
-
     }
 
     //getUserInfo
@@ -175,19 +184,16 @@ public class MainScript : MonoBehaviour
             Debug.Log("UserBindInfo==" + item);
         }
         Debug.Log("OnUseBindInfoSuccessEvent");
-
     }
     private void OnUserBindInfoFailedEvent(TOPErrorResults error)
     {
         Debug.Log("OnUseBindInfoFailedEvent: " + error.code + "-----" + error.message);
-
     }
 
     //pay
     private void OnPaySuccessEvent(TOPPaymentData payResult)
     {
         Debug.Log("OnPaySuccessEvent: " + payResult.orderNo + "-----" + payResult.payPlatformOrderNo);
-        TopSDK.PurchaseEvent(new TOPPurchaseData(0.1254, "USD", 1, payResult.productId, payResult.orderNo, payResult.payPlatformOrderNo));
         ShowDialog("支付成功", "商品ID：" + payResult.productId + "\nSDK订单号：" + payResult.orderNo + "\n三方订单号：" + payResult.payPlatformOrderNo);
     }
 
