@@ -1,6 +1,6 @@
 
 import { Component, Label, RichText, sys, _decorator } from 'cc';
-import { TOPDataChannelType, TOPPayment, TOPPlatformType, TOPRoleInfo, TopSDK, TopSDKEmitter } from '../TopSdk/TopSDK';
+import { TOPDataChannelType, TOPPayment, TOPPlatformType, TOPPurchaseData, TOPRoleInfo, TopSDK, TopSDKEmitter } from '../TopSdk/TopSDK';
 const { ccclass, property } = _decorator;
 
 
@@ -204,12 +204,6 @@ export class Home extends Component {
     userCenterHanlder() {
         console.log("点击用户中心");
         TopSDK.enterUserCenter();
-        TopSDK.reportEvent("Test3",new Map<string,string>(),TOPDataChannelType.ALL)
-        var  map= new Map<string,string>()
-        map.set("eew","eee")
-        map.set("eew1","eee1")
-        map.set("eew1","eee1")
-        TopSDK.reportEvent("Test4",map,TOPDataChannelType.ALL)
     }
 
     logoutHandler() {
@@ -233,7 +227,23 @@ export class Home extends Component {
     }
 
     reportLevelUpHandler() {
-        TopSDK.levelUpEvent(100,"小黑");
+        var data = new TOPPurchaseData(0.125, "USD", 1, "item_01", "4545553455", "4756657897845656")
+        TopSDK.purchaseEvent(data)
+        TopSDK.tutorialBeginEvent()
+        TopSDK.tutorialCompleteEvent();
+        TopSDK.levelUpEvent(100, "小黑");
+        TopSDK.unlockAchievementEvent("45458jj")
+        TopSDK.shareEvent("Facebook", "jfief", "jifjf44554");
+        TopSDK.earnVirtualCurrencyEvent("hfuisdh", 455);
+        TopSDK.spendVirtualCurrencyEvent("fjuie", 254, "hduhdjd")
+        TopSDK.levelStartEvent("jidfji")
+        TopSDK.levelEndEventWithLevelName("jkfjd", true);
+        TopSDK.reportEvent("Test3", new Map<string, string>(), TOPDataChannelType.ALL)
+        var map = new Map<string, string>()
+        map.set("eew", "eee")
+        map.set("eew1", "eee1")
+        map.set("eew1", "eee1")
+        TopSDK.reportEvent("Test4", map, TOPDataChannelType.ALL)
     }
 
     buy() {
