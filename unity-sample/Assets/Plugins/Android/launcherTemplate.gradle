@@ -4,7 +4,7 @@ apply plugin: 'com.android.application'
 dependencies {
     implementation project(':unityLibrary')
 	def groupId = "com.sino.topsdk.dev"
-	def ver = "1.4.4.1"
+	def ver = "1.4.4.4"
 	implementation "$groupId:unity-ui:$ver"
     implementation "$groupId:guest:$ver"
     implementation "$groupId:facebook:$ver"
@@ -18,6 +18,7 @@ dependencies {
 	//implementation "$groupId:onestore:$ver"
 	implementation "$groupId:appsflyer:$ver"
     implementation "$groupId:firebase:$ver"
+	implementation "$groupId:adjust:$ver"
     }
 
 android {
@@ -61,7 +62,11 @@ android {
         resValue('string', 'twitter_client_secret', 'NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey')
         resValue('string', 'twitter_redirect_url', 'http://mob.com')
 		//AppsFlyer
+        resValue('bool', 'appsflyer_enable_debug_log', "true")
         resValue('string', 'af_dev_key', 'jj8N54kGUaDUiwn7GcFr3A')
+        //Adjust
+        resValue('bool', 'adjust_enable_sandbox', "true")
+        resValue('string', 'adjust_app_token', 'yl9qqj1j29kw')
 		multiDexEnabled true
     }
 

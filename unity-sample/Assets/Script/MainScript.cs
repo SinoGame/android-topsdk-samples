@@ -66,7 +66,7 @@ public class MainScript : MonoBehaviour
         TOPPurchaseData pu = new TOPPurchaseData(0.125, "USD", 1, "item_01", "15435678565656896", "45444656562331878416");
         TopSDK.PurchaseEvent(pu);
         TopSDK.TutorialBeginEvent();
-        TopSDK.TutorialCompleteEvent();
+        TopSDK.TutorialCompleteEvent("新手引导1", true);
         TopSDK.LevelUpEvent(100, "黄桢浩专属");
         TopSDK.UnlockAchievementEvent("dhud1514654");
         TopSDK.ShareEvent("Facebook", "Image", "155215668");

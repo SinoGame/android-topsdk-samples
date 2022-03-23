@@ -142,9 +142,9 @@ public class TopSDKAndroid : TopSDKBase
         PluginClass.CallStatic("tutorialBeginEvent");
     }
 
-    public static void TutorialCompleteEvent()
+    public static void TutorialCompleteEvent(string tutorialName, bool success)
     {
-        PluginClass.CallStatic("tutorialCompleteEvent");
+        PluginClass.CallStatic("tutorialCompleteEvent", tutorialName, success);
     }
 
     public static void LevelUpEvent(int level, string roleName)

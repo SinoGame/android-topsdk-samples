@@ -51,7 +51,7 @@ public class TopSDKiOS : TopSDKBase
     private static extern void _tutorialBeginEvent();
     
     [DllImport ("__Internal")]
-    private static extern void _tutorialCompleteEvent();
+    private static extern void _tutorialCompleteEvent(string tutorialName, bool success);
     
     [DllImport ("__Internal")]
     private static extern void _levelUpEvent(int level, string roleName);
@@ -104,7 +104,7 @@ public class TopSDKiOS : TopSDKBase
 
     private static void _tutorialBeginEvent() { }
 
-    private static void _tutorialCompleteEvent() { }
+    private static void _tutorialCompleteEvent(string tutorialName, bool success) { }
 
     private static void _levelUpEvent(int level, string roleName) { }
 
@@ -255,10 +255,10 @@ public class TopSDKiOS : TopSDKBase
 #endif
     }
 
-    public static void TutorialCompleteEvent()
+    public static void TutorialCompleteEvent(string tutorialName, bool success)
     {
 #if !UNITY_EDITOR
-         _tutorialCompleteEvent();
+         _tutorialCompleteEvent(tutorialName,success);
 #endif
     }
 
