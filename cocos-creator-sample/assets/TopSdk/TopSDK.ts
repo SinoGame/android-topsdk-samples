@@ -256,12 +256,12 @@ export class TopSDK {
         }
     }
 
-    static tutorialCompleteEvent() {
+    static tutorialCompleteEvent(tutorialName:string,success:boolean) {
         if (sys.isNative) {
             if (sys.OS_IOS == sys.os) {
-                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "tutorialCompleteEvent");
+                jsb.reflection.callStaticMethod("TOPDataCocosPlugin", "tutorialCompleteEvent:", tutorialName, success);
             } else if (sys.OS_ANDROID == sys.os) {
-                return jsb.reflection.callStaticMethod(this.androidClass, "tutorialCompleteEvent", "()V");
+                return jsb.reflection.callStaticMethod(this.androidClass, "tutorialCompleteEvent", "(Ljava/lang/String;Z)V", tutorialName, success);
             }
         }
     }
