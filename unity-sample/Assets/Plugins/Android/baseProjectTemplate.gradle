@@ -5,6 +5,7 @@ allprojects {
         repositories {**ARTIFACTORYREPOSITORY**
             google()
             jcenter()
+			maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
         }
 
         dependencies {
@@ -13,6 +14,7 @@ allprojects {
             // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
             // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
             classpath 'com.android.tools.build:gradle:3.6.0'
+			classpath 'com.sino.topsdk.dev:plugin:0.0.1'
             **BUILD_SCRIPT_DEPS**
         }
     }
@@ -24,9 +26,9 @@ allprojects {
         flatDir {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }
-		maven { url 'http://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
-		maven { url 'https://storage.googleapis.com/snap-kit-build/maven' }
-		maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+		//maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
+		//maven { url 'https://storage.googleapis.com/snap-kit-build/maven' }
+		//maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
     }
 }
 

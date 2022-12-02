@@ -1,0 +1,118 @@
+{
+	"enableLog": true,
+	"appName": "PowerRaid",
+	"groupId": "com.sino.topsdk",
+	"version": "1.4.7.2",
+	"platformConfigs": [
+		{
+			"platform": "UNITY",
+			"enable": false,
+			"artifactId": "unity-ui"
+		},
+		{
+			"platform": "COCOS",
+			"enable": false,
+			"artifactId": "cocos-ui"
+		},
+		{
+			"platform": "ANDROID",
+			"enable": true,
+			"artifactId": "ui"
+		},
+		{
+			"platform": "CUSTOMER_SERVICE",
+			"enable": true,
+			"artifactId": "customerservice",
+			"version": "1.2.9.2"
+		},
+		{
+			"platform": "GUEST",
+			"enable": true,
+			"artifactId": "guest"
+		},
+		{
+			"platform": "FACEBOOK",
+			"enable": true,
+			"artifactId": "facebook",
+			"appId": "1657002571118934",
+			"scheme": "fb1657002571118934"
+		},
+		{
+			"platform": "GOOGLE",
+			"enable": true,
+			"artifactId": "google",
+			"appId": "218439857589-3qnnssokj3c2767i1ujmd3mhonasg7kc.apps.googleusercontent.com"
+		},
+		{
+			"platform": "SNAPCHAT",
+			"enable": true,
+			"artifactId": "snapchat",
+			"appId": "9253d907-2fd9-46c0-a1d8-e4eae0718a7c",
+			"redirectUrl": "gameplus://gghj/gggg"
+		},
+		{
+			"platform": "LINE",
+			"enable": true,
+			"artifactId": "line",
+			"appId": "1655569055"
+		},
+		{
+			"platform": "KAKAO",
+			"enable": true,
+			"artifactId": "kakao-v1",
+			"appId": "a83d6ce0334d9539a9a9906332741347",
+			"scheme": "kakaoa83d6ce0334d9539a9a9906332741347"
+		},
+		{
+			"platform": "NAVER",
+			"enable": true,
+			"artifactId": "naver",
+			"appId": "v1MBUGfEzVLtPBuSds5I",
+			"appSecret": "UJFX6gDopG"
+		},
+		{
+			"platform": "TWITTER",
+			"enable": true,
+			"artifactId": "twitter",
+			"appId": "viOnkeLpHBKs6KXV7MPpeGyzE",
+			"appSecret": "NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey",
+			"redirectUrl": "http://mob.com"
+		},
+		{
+			"platform": "DATA",
+			"enable": false,
+			"artifactId": "data"
+		},
+		{
+			"platform": "BILLING",
+			"enable": true,
+			"artifactId": "billing"
+		},
+		{
+			"platform": "ONE_STORE",
+			"enable": false,
+			"artifactId": "onestore"
+		},
+		{
+			"platform": "FIRE_BASE",
+			"enable": true,
+			"artifactId": "firebase",
+			"appId": "viOnkeLpHBKs6KXV7MPpeGyzE",
+			"appSecret": "NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey",
+			"redirectUrl": "http://mob.com"
+		},
+		{
+			"platform": "APPS_FLYER",
+			"enable": true,
+			"artifactId": "appsflyer",
+			"appId": "jj8N54kGUaDUiwn7GcFr3A"
+		},
+		{
+			"platform": "ADJUST",
+			"enable": true,
+			"artifactId": "adjust",
+			"appId": "yl9qqj1j29kw",
+			"sandbox": true
+		}
+	]
+}

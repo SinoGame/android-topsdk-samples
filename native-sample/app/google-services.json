@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "919745385532",
+    "project_id": "powerraid-1f6f1",
+    "storage_bucket": "powerraid-1f6f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919745385532:android:6a68097f242cbf9344df39",
+        "android_client_info": {
+          "package_name": "com.sino.PowerRaid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919745385532-j3s5qolfbo4lsu84dth6aksgc5kvitf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi5CExb1wlEcK04herasMaP6UZcsufozA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919745385532-j3s5qolfbo4lsu84dth6aksgc5kvitf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

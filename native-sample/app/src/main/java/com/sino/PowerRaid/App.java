@@ -1,8 +1,7 @@
 package com.sino.PowerRaid;
 
+import android.app.Application;
 import android.widget.Toast;
-
-import androidx.multidex.MultiDexApplication;
 
 import com.sino.topsdk.core.bean.TOPError;
 import com.sino.topsdk.core.listener.TOPCallback;
@@ -15,7 +14,7 @@ import com.sino.topsdk.sdk.TOPSdkManager;
  * CreateDate:     2020/4/14 16:04
  * Description:    java类作用描述
  */
-public class App extends MultiDexApplication {
+public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
