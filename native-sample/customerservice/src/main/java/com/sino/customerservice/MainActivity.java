@@ -8,10 +8,11 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sino.basic.AnalyticsManager;
+
 import com.sino.customerservice.databinding.ActivityMainBinding;
 import com.sino.topsdk.customer.service.CustomerServiceManager;
 import com.sino.topsdk.customer.service.bean.TOPCustomerServiceInfo;
+import com.sino.topsdk.data.TOPData;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityMainBinding binding;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editor.putString("extraJson", extraJson);
                 editor.apply();
                 CustomerServiceManager.init(this, appId);
-                AnalyticsManager.getInstance().enableNetworkLogging(true);
+                TOPData.getInstance().enableNetworkLogging(true);
                 TOPCustomerServiceInfo info = new TOPCustomerServiceInfo();
                 info.setRoleId(roleId);
                 info.setRoleName(roleName);
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_cv_null_info:
                 appId = binding.etAppId.getText().toString().trim();
                 CustomerServiceManager.init(this, appId);
-                AnalyticsManager.getInstance().enableNetworkLogging(true);
+                TOPData.getInstance().enableNetworkLogging(true);
                 CustomerServiceManager.enter(this, null);
                 break;
             default:

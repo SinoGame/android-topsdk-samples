@@ -2,16 +2,15 @@ plugins {
     id 'com.android.application'
     id 'com.topsdk.plugin'
 }
-//apply from: "config.gradle"
-apply from: "topsdk.gradle"
+apply from: "config.gradle"
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.sino.PowerRaid"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode 11402
         versionName "0.0.15"
     }

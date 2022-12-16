@@ -15,6 +15,7 @@
         tools:replace="android:allowBackup">
         <activity
             android:name="com.sino.PowerRaid.GameActivity"
+            android:exported="true"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
