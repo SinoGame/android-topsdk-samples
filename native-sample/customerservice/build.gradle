@@ -40,8 +40,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 TopSDK {
-    //编译引擎类型androidStudio，unity,cocos(3.x.x版本),cocosV2(2.x.x版本)，laya
-    engineType 'androidStudio'
     //true(正式环境),false（测试环境）
     isRelease false
     //渠道标识GOOGLE,ONESTORE
@@ -50,9 +48,7 @@ TopSDK {
     dspSpaceId '100'
     //客服配置
     customerServiceConfigs {
-        //key:laya（启用laya客服依赖）
-        // key:customerService（启用unity和cocos 3.x.x以上版本客服依赖）
-        // key:customerServiceV2（启用unity和cocos 2.x.x版本客服依赖）
+        // key:customerService（启用客服依赖）
         customerService {
 
         }

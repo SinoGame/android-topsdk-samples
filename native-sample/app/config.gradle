@@ -3,8 +3,6 @@ apply plugin: 'com.google.gms.google-services'
 //TopSdk插件引入
 apply plugin: 'com.topsdk.plugin'
 TopSDK {
-    //编译引擎类型androidStudio，unity,cocos(3.x.x版本),cocosV2(2.x.x版本)，laya
-    engineType 'androidStudio'
     //true(正式环境),false（测试环境）
     isRelease false
     //渠道标识GOOGLE,ONESTORE
@@ -24,7 +22,7 @@ TopSDK {
         //key:facebook(启用facebook依赖并配置参数)
         facebook {
             appId '1657002571118934'
-            scheme 'fb16570025711189345'
+            scheme 'fb1657002571118934'
         }
         //key:twitter(启用twitter依赖并配置参数)
         twitter {
