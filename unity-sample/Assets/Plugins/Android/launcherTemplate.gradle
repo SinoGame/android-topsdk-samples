@@ -106,7 +106,10 @@ android {
 }**SPLITS_VERSION_CODE****LAUNCHER_SOURCE_BUILD_SETUP**
 TopSDK {
     isRelease false
-    platformType "unity"
+    //渠道标识GOOGLE,ONESTORE
+    channelId 'GOOGLE'
+    //广告位标识
+    dspSpaceId '100'
 
     loginConfigs {
         guest {
