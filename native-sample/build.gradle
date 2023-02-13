@@ -5,7 +5,7 @@ buildscript {
         jcenter()
         mavenCentral()
         // 1.添加TopSDK Maven地址
-        maven { url 'http://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
+        maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3"
