@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
-    id 'com.topsdk.plugin'
+//    id 'com.topsdk.plugin'
 }
-apply from: "config.gradle"
+apply from: "topsdk.gradle"
 android {
     compileSdkVersion 31
     buildToolsVersion "29.0.3"

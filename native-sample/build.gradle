@@ -5,12 +5,12 @@ buildscript {
         jcenter()
         mavenCentral()
         // 1.添加TopSDK Maven地址
-        maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
+        //maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3"
         //2.注册TopSdk插件，最新版本号替换latest.release字段（如：0.0.1）
-        classpath 'com.sino.topsdk:plugin:0.0.1'
+        //classpath 'com.sino.topsdk:plugin:0.0.1'
         //Firebase需要，如果不使用Firebase,则忽略下面配置
         classpath 'com.google.gms:google-services:4.3.14'
     }
@@ -21,6 +21,12 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        // 1.添加TopSDK Maven地址
+        maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
+        //Snapchat
+        maven { url 'https://storage.googleapis.com/snap-kit-build/maven' }
+        //kakao
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
     }
 }
 

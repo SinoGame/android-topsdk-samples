@@ -1,0 +1,81 @@
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    defaultConfig {
+        //channel
+        resValue('string', 'top_channel_id', 'GOOGLE')
+        //dspSpaceId
+        resValue('string', 'top_dsp_space_id', '1')
+        //facebook
+        resValue('string', 'facebook_app_id', '1657002571118934')
+        resValue('string', 'fb_login_protocol_scheme', 'fb1657002571118934')
+        //resValue('string', 'facebook_client_token', '083f26474085cec3989959cd8426b772')
+        //google
+        resValue('string', 'google_client_id', '967459084944-kcuri7pqh8r03ikkh9vn6vuej8boubrq.apps.googleusercontent.com')
+        //snapchat配置 redirect_url="gameplus://gghj/gggg"
+        //resValue('string', 'snapchat_client_id', 'b4dd0ad2-88ff-410c-8ab4-b4756a14a84d')
+        //snapchat 正式id
+        resValue('string', 'snapchat_client_id', '9253d907-2fd9-46c0-a1d8-e4eae0718a7c')
+        addManifestPlaceholders([snapchat_scheme: "gameplus", snapchat_host: "gghj", snapchat_path: "gggg"])
+        //line
+        resValue('string', 'line_channel_id', '1655569055')
+        //kakao
+        resValue('string', 'kakao_app_id', 'a83d6ce0334d9539a9a9906332741347')
+        resValue('string', 'kakao_scheme', 'kakaoa83d6ce0334d9539a9a9906332741347')
+        //naver
+        resValue('string', 'naver_client_id', 'v1MBUGfEzVLtPBuSds5I')
+        resValue('string', 'naver_client_secret', 'UJFX6gDopG')
+        resValue('string', 'naver_client_name', 'PowerRaid')
+        //twitter
+        resValue('string', 'twitter_client_id', 'viOnkeLpHBKs6KXV7MPpeGyzE')
+        resValue('string', 'twitter_client_secret', 'NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey')
+        resValue('string', 'twitter_redirect_url', 'http://mob.com')
+        //amazon
+        resValue('string', 'amazon_client_id', 'amzn1.application-oa2-client.b63045f5f3a34fdf9b8aaa5baf615b4c')
+        resValue('string', 'amazon_redirect_url', 'https://github.com/pangli')
+        //xsolla
+        resValue('string', 'xsolla_merchant_id', '134467')
+        resValue('string', 'xsolla_project_id', '56599')
+        resValue('string', 'xsolla_return_url', 'https://gameplus.xsolla')
+        //AppsFlyer
+        resValue('bool', 'appsflyer_enable_debug_log', "true")
+        resValue('string', 'af_dev_key', 'jj8N54kGUaDUiwn7GcFr3A')
+        //Adjust
+        resValue('bool', 'adjust_enable_sandbox', "true")
+        resValue('string', 'adjust_app_token', 'yl9qqj1j29kw')
+        //方法数超64k
+        multiDexEnabled true
+        //需要支持的语言
+//        resConfigs "en-rUS", "zh-rCN"
+    }
+    //Line kakao sdk 配置,java8支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+}
+
+
+dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "com.android.installreferrer:installreferrer:2.2"
+    def groupId = 'com.sino.topsdk'
+    def verName = '1.5.0.1'
+    implementation "$groupId:ui:$verName"
+    implementation "$groupId:guest:$verName"
+    implementation "$groupId:facebook:$verName"
+    implementation "$groupId:google:$verName"
+    implementation "$groupId:snapchat:$verName"
+    implementation "$groupId:line:$verName"
+    implementation "$groupId:naver:$verName"
+    implementation "$groupId:twitter:$verName"
+    implementation "$groupId:kakao:$verName"
+    implementation "$groupId:appsflyer:$verName"
+    implementation "$groupId:firebase:$verName"
+    implementation "$groupId:adjust:$verName"
+    implementation "$groupId:kakao:$verName"
+    implementation "$groupId:billing:$verName"
+}

@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'com.topsdk.plugin'
+//    id 'com.topsdk.plugin'
 }
 
 android {
@@ -38,19 +38,22 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    def groupId = 'com.sino.topsdk'
+    def customerServiceVerName = '1.3.0.1'
+    implementation "$groupId:customerservice:$customerServiceVerName"
 }
-TopSDK {
-    //true(正式环境),false（测试环境）
-    isRelease false
-    //渠道标识GOOGLE,ONESTORE
-    channelId 'GOOGLE'
-    //广告位标识
-    dspSpaceId '100'
-    //客服配置
-    customerServiceConfigs {
-        // key:customerService（启用客服依赖）
-        customerService {
-
-        }
-    }
-}
+//TopSDK {
+//    //true(正式环境),false（测试环境）
+//    isRelease false
+//    //渠道标识GOOGLE,ONESTORE
+//    channelId 'GOOGLE'
+//    //广告位标识
+//    dspSpaceId '100'
+//    //客服配置
+//    customerServiceConfigs {
+//        // key:customerService（启用客服依赖）
+//        customerService {
+//
+//        }
+//    }
+//}
