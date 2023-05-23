@@ -6,6 +6,7 @@ allprojects {
             google()
             jcenter()
 			mavenCentral()
+            // 1.添加TopSDK Maven地址
 			maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
         }
 
@@ -15,7 +16,8 @@ allprojects {
             // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
             // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
             classpath 'com.android.tools.build:gradle:3.6.0'
-			classpath 'com.sino.topsdk:plugin:0.0.1'
+			//2.注册TopSdk插件，最新版本号替换latest.release字段（如：0.0.1）
+            // classpath 'com.sino.topsdk.dev:plugin:0.0.2'
             **BUILD_SCRIPT_DEPS**
         }
     }
@@ -27,9 +29,7 @@ allprojects {
         flatDir {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }
-		//maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
-		//maven { url 'https://storage.googleapis.com/snap-kit-build/maven' }
-		//maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+        maven { url 'https://storage-sdk-gameplus.meetsocial.com/repository/TopSdk/' }
     }
 }
 

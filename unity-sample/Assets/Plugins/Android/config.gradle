@@ -1,0 +1,35 @@
+
+android {
+    defaultConfig {
+        //dspSpaceId
+        resValue('string', 'top_channel_id', 'GOOGLE')
+        resValue('string', 'top_dsp_space_id', '1')
+        //facebook
+        resValue('string', 'facebook_app_id', '1657002571118934')
+        resValue('string', 'fb_login_protocol_scheme', 'fb1657002571118934')
+        //google
+        resValue('string', 'google_client_id', '967459084944-kcuri7pqh8r03ikkh9vn6vuej8boubrq.apps.googleusercontent.com')
+        //方法数超64k
+        multiDexEnabled true
+        //需要支持的语言
+//        resConfigs "en-rUS", "zh-rCN"
+    }
+    //Line kakao sdk 配置,java8支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+}
+
+dependencies {
+    def groupId = "com.sino.topsdk.dev"
+	def verName = "1.4.5.8"
+	implementation "$groupId:ui:$verName"
+    implementation "$groupId:guest:$verName"
+    implementation "$groupId:facebook:$verName"
+    implementation "$groupId:google:$verName"
+	implementation "$groupId:billing:$verName"
+}
