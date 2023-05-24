@@ -31,17 +31,18 @@ public class SupportAndroidXGradlePropertiesBuildProcessor : IPostGenerateGradle
         Debug.Log("TopSdk assetsPath : " + assetsPath);
         string androidPath = Path.Combine(assetsPath, "Plugins", "Android");
         Debug.Log("TopSdk androidPath : " + androidPath);
-        string gradleOutPath = Path.GetDirectoryName(path);
-        Debug.Log("TopSdk gradleOutPath : " + gradleOutPath);
         string unityVersion = Application.unityVersion;
         Debug.Log("TopSdk unityVersion : " + unityVersion);
         string[] versions = unityVersion.Split('.');
         Debug.Log("TopSdk unityVersion : " + versions[0]);
-        addAndroidX(gradleOutPath);
+
         if (int.Parse(versions[0]) > 2018)
         {
             //unity 2018以上版本
             Debug.Log("TopSdk unityVersion >2018 ");
+            string gradleOutPath = Path.GetDirectoryName(path);
+            Debug.Log("TopSdk gradleOutPath : " + gradleOutPath);
+            addAndroidX(gradleOutPath);
             string launcherBuildGradlePath = Path.Combine(
                 gradleOutPath,
                 "launcher",
@@ -81,19 +82,37 @@ public class SupportAndroidXGradlePropertiesBuildProcessor : IPostGenerateGradle
         {
             //unity 2018及以下版本
             Debug.Log("TopSdk unityVersion <=2018 ");
-            string mainTemplateGradlePath = Path.Combine(androidPath, "mainTemplate.gradle");
-            Debug.Log("TopSdk appBuildGradlePath : " + mainTemplateGradlePath);
-            if (File.Exists(mainTemplateGradlePath))
+            Debug.Log("TopSdk gradleOutPath : " + path);
+            addAndroidX(path);
+            string launcherBuildGradlePath = Path.Combine(path, "build.gradle");
+            Debug.Log("TopSdk launcherBuildGradlePath : " + launcherBuildGradlePath);
+            // BuildGradleParser.ParseAndUpdateBuildGradle(
+            //     Path.Combine(gradleOutPath, "build.gradle")
+            // );
+            // Debug.Log("TopSdk build.gradle file has been updated successfully.");
+
+            if (File.Exists(launcherBuildGradlePath))
             {
-                Debug.Log("mainTemplate.gradle 文件存在");
-                StreamWriter writer = new StreamWriter(mainTemplateGradlePath, true);
-                writer.WriteLine("apply from: \"config.gradle\"");
+                Debug.Log("TopSdk gradleOut/build.gradle file exists");
+                StreamWriter writer = new StreamWriter(launcherBuildGradlePath, true);
+                writer.WriteLine("\napply from: \"config.gradle\"");
                 writer.Flush();
                 writer.Close();
+                Debug.Log(
+                    "TopSdk gradleOut/build.gradle file writer apply from: \"config.gradle\" successfully."
+                );
+                Debug.Log(
+                    "TopSdk copy unity project Assets/Plugins/Android/config.gradle file to Temp/gradleOut"
+                );
+                FileUtil.CopyFileOrDirectory(
+                    Path.Combine(androidPath, "config.gradle"),
+                    Path.Combine(path, "config.gradle")
+                );
+                Debug.Log("TopSdk copy config.gradle file successfully");
             }
             else
             {
-                Debug.Log("mainTemplate.gradle file not found");
+                Debug.Log("TopSdk gradleOut/build.gradle file not found");
             }
         }
     }
